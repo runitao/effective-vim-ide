@@ -125,6 +125,10 @@ colorscheme solarized
 "colorscheme monokai
 "colorscheme phd
 
+" map to <Leader>cf in C++ code
+"autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+"autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp ClangFormatAutoEnable
 " >>
 " 营造专注气氛
 
@@ -529,5 +533,3 @@ let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>", "ip"]
 " 调用 gundo 树
 nnoremap <Leader>ud :GundoToggle<CR>
 
-let g:clang_format#command = '/usr/local/Cellar/clang-format/2016-03-29/bin/clang-format'
-autocmd FileType c,cpp ClangFormatAutoEnable

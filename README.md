@@ -12,16 +12,16 @@ apt install cmake
 ```
 
 ## Install
-#### Online installation
+### Online installation
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-install/master/tools/install.sh)"
 ```
-#### Offline installation
-1. download and pack
+### Offline installation
+#### 1. download and pack
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-install/master/tools/download.sh)"
 ```
-2. unpack and install
+#### 2. unpack and install
 ```shell
 tar xjf vim-ide-easy-install.tar.gz
 mv vim-ide-easy-install $HOME/.vim

@@ -1,15 +1,22 @@
-## Install
-1. Download this repository
-```bash
-    git clone https://github.com/marvelrock/vim-ide-easy-install.git $HOME/.vim
-    cd $HOME/.vim
-    git submodule init
-    git submodule update
-    cd $HOME && ln -sf $HOME/.vim/vimrc .vimrc
+## Prerequisites
+### Mac OS X EI Capitan
+```
+brew install ctags
 ```
 
-2. Load plugins in vim
->> type command `:PlugInstall` in ex mode
+### Ubuntu 16.04
+```
+apt install vim-nox # some plugins need python supported
+apt install exuberant-ctags
+apt install cmake
+```
 
-## Link
+## Install
+Download and install
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-install/master/tools/install.sh)"
+```
+
+## References
 [vim-plug](https://github.com/junegunn/vim-plug)
+[use-vim-as-ide](https://github.com/yangyangwithgnu/use_vim_as_ide)

@@ -102,7 +102,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-scripts/DrawIt'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp'], 'do': './install.py --clang-completer --tern-completer' } 
+Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp'], 'do': './install.py --clang-completer' } 
 Plug 'derekwyatt/vim-protodef'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'fholgado/minibufexpl.vim'

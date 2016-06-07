@@ -38,7 +38,7 @@ cp $HOME/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py 
 ```
 - Clang-Format
 ```shell
-clang-format -style=Google --dump-config /path/to/your/project/.clang-format
+clang-format -style=Google --dump-config > /path/to/your/project/.clang-format
 ```
 
 ## References

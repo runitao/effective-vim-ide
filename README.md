@@ -2,6 +2,7 @@
 ### Mac OS X EI Capitan
 ```shell
 brew install clang-format # format c/c++/java... code
+brew install vim
 brew install ctags
 brew install npm
 brew install the_silver_searcher # faster code search tool than ack

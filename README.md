@@ -1,33 +1,27 @@
 ## Prerequisites
 ### Mac OS X EI Capitan
 ```shell
-brew install clang-format
+brew install clang-format # format c/c++/java... code
 brew install ctags
+brew install npm
+brew install the_silver_searcher # faster code search tool than ack
 ```
 
-### Ubuntu 16.04
+### Ubuntu 16.04 (sudo)
 ```shell
 apt install vim-nox # some plugins need python supported
 apt install exuberant-ctags
 apt install cmake
-apt install clang-format # format c/c++/java... code
+apt install clang-format
+apt install silversearcher-ag
+apt install npm xdg-utils curl nodejs-legacy
+npm -g install instant-markdown-d
 ```
 
 ## Install
 ### Online installation
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-install/master/tools/install.sh)"
-```
-### Offline installation
-#### 1. download and pack
-```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-install/master/tools/download.sh)"
-```
-#### 2. unpack and install
-```shell
-tar xjf vim-ide-easy-install.tar.gz
-mv vim-ide-easy-install $HOME/.vim
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
 ```
 
 ## Post install
@@ -44,3 +38,5 @@ clang-format -style=Google --dump-config > /path/to/your/project/.clang-format
 ## References
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [use-vim-as-ide](https://github.com/yangyangwithgnu/use_vim_as_ide)
+- [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
+- [ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher)

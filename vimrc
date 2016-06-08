@@ -112,6 +112,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'suan/vim-instant-markdown'
 Plug 'rhysd/vim-clang-format'
 Plug 'kien/ctrlp.vim'
+Plug 'ggreer/the_silver_searcher'
 Plug 'honza/vim-snippets'
 " 插件列表结束
 call plug#end()

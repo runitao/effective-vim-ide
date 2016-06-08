@@ -1,6 +1,7 @@
 ## Prerequisites
 ### Mac OS X EI Capitan
 ```shell
+brew install vim
 brew install clang-format
 brew install ctags
 ```

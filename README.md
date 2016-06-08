@@ -29,6 +29,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/marvelrock/vim-ide-easy-in
 tar xjf vim-ide-easy-install.tar.gz
 mv vim-ide-easy-install $HOME/.vim
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
+vim +PlugInstall! +qall # force vim-plug run all plugins
 ```
 
 ## Post install

@@ -85,11 +85,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/phd'
-Plug 'tpope/vim-fugitive'
 Plug 'powerline/fonts' , { 'do': './install.sh' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp'] }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kshenoy/vim-signature'
 Plug 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
@@ -100,18 +98,19 @@ Plug 'vim-scripts/vimprj'
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-scripts/DrawIt'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp'], 'do': './install.py --clang-completer' } 
 Plug 'derekwyatt/vim-protodef'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive' 
+Plug 'Xuyuanp/nerdtree-git-plugin' 
+Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
 Plug 'fholgado/minibufexpl.vim'
 Plug 'gcmt/wildfire.vim'
 Plug 'sjl/gundo.vim'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'suan/vim-instant-markdown'
-Plug 'rhysd/vim-clang-format'
+Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'ctrlpvim/ctrlp.vim'
 " 插件列表结束
 call plug#end()

@@ -60,7 +60,7 @@ clang-format -style=Google -dump-config > /path/to/your/project/.clang-format
 
 ## References
 - [use-vim-as-ide](https://github.com/yangyangwithgnu/use_vim_as_ide) - I mainly refer to this site
-- [asins/vimcdoc](https://github.com/asins/vimcdoc) - 中文帮助文档，如果需要请打开注释`Plug 'asins/vimcdoc'`并在normal mode下执行`PlugInstall`
+- [asins/vimcdoc](https://github.com/asins/vimcdoc) - 中文帮助文档，如果需要请打开注释`Plug 'asins/vimcdoc'`并在Ex-mode下执行`PlugInstall`
 - [vim-plug](https://github.com/junegunn/vim-plug) - manager vim plugins
 - [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
 - [ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher) - ag for plugin ctrlsf.vim

@@ -3,6 +3,7 @@
 ```shell
 brew install clang-format # format c/c++/java... code
 brew install vim
+brew install cmake xz # need by YouCompleteMe
 brew install ctags
 brew install npm
 brew install the_silver_searcher # faster code search tool than ack

@@ -17,10 +17,8 @@ filetype plugin on
 
 " >>
 " vim 自身（非插件）快捷键
-
-" 定义快捷键到行首和行尾
-"nmap LB 0
-"nmap LE $
+" 支持终端粘贴
+set paste
 
 " 开启剪切到系统剪贴板
 set clipboard+=unnamedplus
@@ -65,7 +63,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 set incsearch
 
 " 搜索时大小写不敏感
-set ignorecase
+" set ignorecase
 
 " 关闭兼容模式
 set nocompatible
@@ -82,12 +80,15 @@ set wildmenu
 filetype off
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
 call plug#begin('~/.vim/plugged')
-
+"Plug 'asins/vimcdoc'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/phd'
-Plug 'Lokaltog/vim-powerline'
+Plug 'tpope/vim-fugitive'
+Plug 'powerline/fonts' , { 'do': './install.sh' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kshenoy/vim-signature'
@@ -111,9 +112,7 @@ Plug 'sjl/gundo.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'suan/vim-instant-markdown'
 Plug 'rhysd/vim-clang-format'
-Plug 'kien/ctrlp.vim'
-Plug 'ggreer/the_silver_searcher'
-Plug 'honza/vim-snippets'
+Plug 'ctrlpvim/ctrlp.vim'
 " 插件列表结束
 call plug#end()
 filetype plugin indent on
@@ -121,15 +120,25 @@ filetype plugin indent on
 
 " 配色方案
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 "colorscheme molokai
-"colorscheme monokai
+colorscheme monokai
 "colorscheme phd
+
+" 配置vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+" 如果想要比较炫酷的airline效果，必须开启powerline fonts 
+let g:airline_powerline_fonts = 1
+let g:airline_theme='dark'
 
 " map to <Leader>cf in C++ code
 "autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 "autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp ClangFormatAutoEnable
+
 " >>
 " 营造专注气氛
 
@@ -183,13 +192,10 @@ set hlsearch
 
 " 设置 gvim 显示字体
 "set guifont=YaHei\ Consolas\ Hybrid\ 10.5
-set guifont=Monaco:h12
+"set guifont=Monaco:h12
 
 " 禁止折行
 set nowrap
-
-" 设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
 
 " <<
 
@@ -242,14 +248,6 @@ set nofoldenable
 " <<
 
 " >>
-" 接口与实现快速切换
-
-" *.cpp 和 *.h 间切换
-"nmap <silent> <Leader>sw :FSHere<cr>
-
-" <<
-
-" >>
 " 代码收藏
 
 " 自定义 vim-signature 快捷键
@@ -285,7 +283,7 @@ let g:SignatureMap = {
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
 let tagbar_left=1
 " 设置显示／隐藏标签列表子窗口的快捷键。速记：identifier list by tag
-nnoremap <Leader>t :TagbarToggle<CR>
+nnoremap <silent> <F4> :TagbarToggle<CR>
 " 设置标签子窗口的宽度
 let tagbar_width=32
 " tagbar 子窗口中不显示冗余帮助信息
@@ -355,7 +353,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 " 查找
 
 " 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
-nnoremap <Leader>sp :CtrlSF<CR>
+nnoremap <Leader>sf :CtrlSF<CR>
 
 " <<
 
@@ -455,20 +453,14 @@ let g:disable_protodef_sorting=1
 
 " >>
 " 库信息参考
- 
-" 启用:Man命令查看各类man信息
-source $VIMRUNTIME/ftplugin/man.vim
-
-" 定义:Man命令查看各类man信息的快捷键
-nmap <Leader>man :Man 3 <cword><CR>
-
+" 键入K，显示光标下的词的参考手册
 " <<
 
 " >>
 " 工程文件浏览
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
-nmap <Leader>f :NERDTreeToggle<CR>
+nnoremap <silent> <F6> :NERDTreeToggle<CR>
 " 设置 NERDTree 子窗口宽度
 let NERDTreeWinSize=22
 " 设置 NERDTree 子窗口位置
@@ -485,15 +477,25 @@ let NERDTreeAutoDeleteBuffer=1
 " >>
 " 多文档编辑
  
-" 显示/隐藏 MiniBufExplorer 窗口
-map <Leader>bl :MBEToggle<cr>
+" 有vim-airline的支持，不需要显示miniBufExpl状态栏
+let g:miniBufExplAutoStart = 0
 
 " buffer 切换快捷键
-map <C-Tab> :MBEbn<cr>
-map <C-S-Tab> :MBEbp<cr>
-
+"map <leader>bn :MBEbn<cr>
+"map <leader>bp :MBEbp<cr>
+"map <leader>bd :MBEbd<cr>
+nnoremap <silent> <F8> :bn<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
 " <<
-
 
 " >>
 " 环境恢复

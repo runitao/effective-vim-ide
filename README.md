@@ -32,13 +32,13 @@ echo > $HOME/.vimrc
 ```
 
 ## Post install
-- vim-airline
+- [vim-airline][] - fantastic status line
 
     You need to select a font from `$HOME/.vim/plugged/fonts/` for your terminal's non-ascii font.
 And keep `let g:airline_powerline_fonts = 1` on.
 
-### generate dot files(c/c++, may be available for java...)
-- YouCompleteMe
+### You may need this for your projects(c/c++/python/java...)
+- [YouCompleteMe][]
 ```shell
 cp $HOME/.vim/dotfiles/.ycm_extra_conf.py /path/to/your/project/
 ```
@@ -46,7 +46,7 @@ cp $HOME/.vim/dotfiles/.ycm_extra_conf.py /path/to/your/project/
 ```shell
 clang-format -style=Google -dump-config > /path/to/your/project/.clang-format
 ```
-- vimprj [1][]
+- [vimprj][]
 ```shell
 cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 ```
@@ -69,7 +69,7 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 - more mapping, please refer to \*map in vimrc
 
 ## Note
-+ YouCompleteMe only support jump in a translate unit or `#include` files, but we can use CtrlSF instead to jump between definition and declaration.
++ YouCompleteMe only support jump in a translate unit or `#include` files, but we can use [CtrlSF][] instead to jump between definition and declaration.
 
 ## References
 - [use-vim-as-ide](https://github.com/yangyangwithgnu/use_vim_as_ide) - I mainly refer to this site
@@ -77,8 +77,11 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 - [vim-plug](https://github.com/junegunn/vim-plug) - manager vim plugins
 - [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
 - [ggreer/the_silver_searcher](https://github.com/ggreer/the_silver_searcher) - ag for plugin ctrlsf.vim
-- [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline) - fantastic status line
 - [dyng/ctrlsf.vim](https://github.com/dyng/ctrlsf.vim) - powerful refactor tool with plugin vim-multiple-cursors
 - [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 - [ctrlpvim/ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) - powerful file finder
-- [1]: http://dmitryfrank.com/articles/vim_project_code_navigation - Vim: convenient code navigation for your projects
+
+[vim-airline]: https://github.com/vim-airline/vim-airline
+[YouCompleteMe]: https://github.com/Valloric/YouCompleteMe
+[vimprj]: http://dmitryfrank.com/articles/vim_project_code_navigation 
+[CtrlSF]: https://github.com/dyng/ctrlsf.vim

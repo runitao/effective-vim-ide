@@ -347,10 +347,11 @@ nmap <Leader>tn :tnext<CR>
 nmap <Leader>tp :tprevious<CR>
 
 " 基于语义的代码导航
-
 nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
 " 只能是 #include 或已打开的文件
 nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+" 在声明和定义间来回跳转。注意，必须是 #include 或已打开的文件
+nnoremap <F3> :YcmCompleter GoTo<CR>
 
 " <<
 
@@ -359,15 +360,21 @@ nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 
 " 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
 nnoremap <Leader>sf :CtrlSF<CR>
+" 使用默认的Ctrl-j跳到下一个
+" 使用默认的Ctrl-p跳到上一个
 
 " <<
 
 " >>
-" 内容替换
+" 内容替换, vim-multi-cursor
 
 " 快捷替换
-let g:multi_cursor_next_key='<S-n>'
-let g:multi_cursor_skip_key='<S-k>'
+" 使用默认的Ctrl-n选择下一个
+"let g:multi_cursor_next_key='<c-n>'
+" 使用默认的Ctrl-p选择下一个
+"let g:multi_cursor_skip_key='<c-p>'
+" 使用默认的Ctrl-x排除当前光标处的匹配项
+"let g:multi_cursor_skip_key='<c-x>'
 
 " 精准替换
 " 替换函数。参数说明：

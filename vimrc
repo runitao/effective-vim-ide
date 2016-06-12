@@ -18,7 +18,9 @@ filetype plugin on
 " >>
 " vim 自身（非插件）快捷键
 " 支持终端粘贴
-set paste
+"set paste
+" 默认开启paste，会导致部分快捷键映射失效
+set pastetoggle=<F10>
 
 " 开启剪切到系统剪贴板
 set clipboard+=unnamedplus
@@ -41,12 +43,16 @@ nmap <Leader>Q :qa!<CR>
 nnoremap nw <C-W><C-W>
 " 跳转至右方的窗口
 nnoremap <Leader>lw <C-W>l
-" 跳转至方的窗口
+nnoremap <C-l> <C-W>l
+" 跳转至左方的窗口
 nnoremap <Leader>hw <C-W>h
+"nnoremap <C-h> <C-W>h " C-H不能工作，解决TODO
 " 跳转至上方的子窗口
 nnoremap <Leader>kw <C-W>k
+nnoremap <C-k> <C-W>k
 " 跳转至下方的子窗口
 nnoremap <Leader>jw <C-W>j
+nnoremap <C-j> <C-W>j
 
 " 定义快捷键在结对符之间跳转
 "nmap <Leader>M %
@@ -100,7 +106,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/DrawIt'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp'], 'do': './install.py --clang-completer' } 
+Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'cmake'], 'do': './install.py --clang-completer' } 
 Plug 'derekwyatt/vim-protodef'
 Plug 'tpope/vim-fugitive' 
 Plug 'Xuyuanp/nerdtree-git-plugin' 
@@ -118,7 +124,7 @@ filetype plugin indent on
 " <<<<
 
 " 配色方案
-set background=dark
+"set background=dark
 "colorscheme solarized
 "colorscheme molokai
 colorscheme monokai
@@ -397,48 +403,47 @@ nnoremap <Leader>rwc :call Replace(1, 1, input('Replace '.expand('<cword>').' wi
 
 " <<
 
-" 模板补全
-" UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsSnippetDirectories=["mysnippets"]
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
-
 " >>
 " YCM 补全
 
 " YCM 补全菜单配色
 " 菜单
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+highlight Pmenu ctermfg=2 ctermbg=15 guifg=#005f87 guibg=#EEE8D5
 " 选中项
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-
+highlight PmenuSel ctermfg=15 ctermbg=2 guifg=#AFD700 guibg=#106900
 " 补全功能在注释中同样有效
 let g:ycm_complete_in_comments=1
-
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf=0
-
 " 开启 YCM 标签补全引擎
 let g:ycm_collect_identifiers_from_tags_files=0
 "" 引入 C++ 标准库 tags
 "set tags+=/data/misc/software/app/vim/stdcpp.tags
 "set tags+=/data/misc/software/app/vim/sys.tags
-
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
 inoremap <leader>; <C-x><C-o>
-
 " 补全内容不以分割子窗口形式出现，只显示补全列表
 set completeopt-=preview
-
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=1
-
 " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_cache_omnifunc=0
-
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
+" 在候选列表中移动
+"let g:ycm_key_list_select_completion = ['<C-j>']
+"let g:ycm_key_list_previous_completion = ['<C-k>']
+" 统一YCM补与UltiSnips补全快捷键
+let g:UltiSnipsSnippetDirectories=["mysnippets"]
+" 还不能用
+"let g:UltiSnipsExpandTrigger = "<C-l>"
+"let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+"let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+" 模板补全
+" UltiSnips 的 tab 键与 YCM 冲突，重新设定
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 " <<
  

@@ -94,9 +94,9 @@ Plug 'vim-scripts/phd'
 Plug 'powerline/fonts' , { 'do': './install.sh' }
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp'] }
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kshenoy/vim-signature'
-Plug 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
+"Plug 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/indexer.tar.gz'
 Plug 'vim-scripts/DfrankUtil'
@@ -114,7 +114,7 @@ Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
 Plug 'fholgado/minibufexpl.vim'
 Plug 'gcmt/wildfire.vim'
 Plug 'sjl/gundo.vim'
-Plug 'Lokaltog/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 Plug 'ctrlpvim/ctrlp.vim'
@@ -529,21 +529,34 @@ map <leader>rs :source my.vim<cr>
 " <<
  
 " 设置快捷键实现一键编译及运行
-nmap <Leader>m :wa<CR> :cd build/<CR> :!rm -rf main<CR> :!cmake CMakeLists.txt<CR>:make<CR><CR> :cw<CR> :cd ..<CR>
-nmap <Leader>g :wa<CR>:cd build/<CR>:!rm -rf main<CR>:!cmake CMakeLists.txt<CR>:make<CR><CR>:cw<CR>:cd ..<CR>:!build/main<CR>
+"nmap <Leader>m :wa<CR> :cd build/<CR> :!rm -rf main<CR> :!cmake CMakeLists.txt<CR>:make<CR><CR> :cw<CR> :cd ..<CR>
+"nmap <Leader>g :wa<CR>:cd build/<CR>:!rm -rf main<CR>:!cmake CMakeLists.txt<CR>:make<CR><CR>:cw<CR>:cd ..<CR>:!build/main<CR>
 
 " >>
 " 快速选中结对符内的文本
  
 " 快捷键
-map <SPACE> <Plug>(wildfire-fuel)
-vmap <S-SPACE> <Plug>(wildfire-water)
+"map <SPACE> <Plug>(wildfire-fuel)
+"vmap <S-SPACE> <Plug>(wildfire-water)
 
 " 适用于哪些结对符
-let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>", "ip"]
+"let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>", "ip"]
 
 " <<
 
 " 调用 gundo 树
 nnoremap <Leader>ud :GundoToggle<CR>
 
+" 如果运行的是neovim
+if has('nvim')
+    " 映射打开nvim-terminal，并运行zsh
+    "nnoremap <leader>t  :vsplit +terminal<cr>
+    nnoremap <silent> <F2> :vsplit term://zsh<CR>
+    " 映射ESC退出nvim-terminal
+    tnoremap <esc>      <c-\><c-n>
+    tnoremap <a-h>      <c-\><c-n><c-w>h
+    tnoremap <a-j>      <c-\><c-n><c-w>j
+    tnoremap <a-k>      <c-\><c-n><c-w>k
+    tnoremap <a-l>      <c-\><c-n><c-w>l
+    autocmd BufEnter term://* startinsert
+endif

@@ -73,6 +73,7 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 
 ## References
 - [use-vim-as-ide](https://github.com/yangyangwithgnu/use_vim_as_ide) - I mainly refer to this site
+- [awesome-vim](https://github.com/mhinz/vim-galore)
 - [asins/vimcdoc](https://github.com/asins/vimcdoc) - 中文帮助文档，如果需要请打开注释`Plug 'asins/vimcdoc'`并在Ex-mode下执行`PlugInstall`
 - [vim-plug](https://github.com/junegunn/vim-plug) - manager vim plugins
 - [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)

@@ -107,12 +107,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/DrawIt'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'cmake'], 'do': './install.py --clang-completer' } 
-Plug 'derekwyatt/vim-protodef'
+"自动补全括号，但是又不能跳出括号，可以使用ultisnips替代
+"Plug 'Townk/vim-autoclose' , { 'for': ['c', 'cpp', 'cmake'] }
+"Plug 'derekwyatt/vim-protodef' "依赖FSWitch，以及perl，故目前没有效果
 Plug 'tpope/vim-fugitive' 
 Plug 'Xuyuanp/nerdtree-git-plugin' 
 Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
 Plug 'fholgado/minibufexpl.vim'
-Plug 'gcmt/wildfire.vim'
+"Plug 'gcmt/wildfire.vim'
 Plug 'sjl/gundo.vim'
 "Plug 'easymotion/vim-easymotion'
 Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
@@ -342,9 +344,9 @@ let g:tagbar_type_cpp = {
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+l+p+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 
 " 正向遍历同名标签
-nmap <Leader>tn :tnext<CR>
+"nmap <Leader>tn :tnext<CR>
 " 反向遍历同名标签
-nmap <Leader>tp :tprevious<CR>
+"nmap <Leader>tp :tprevious<CR>
 
 " 基于语义的代码导航
 nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
@@ -438,19 +440,19 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
 " 在候选列表中移动
-"let g:ycm_key_list_select_completion = ['<C-j>']
-"let g:ycm_key_list_previous_completion = ['<C-k>']
+let g:ycm_key_list_select_completion = ['<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-k>']
 " 统一YCM补与UltiSnips补全快捷键
 let g:UltiSnipsSnippetDirectories=["mysnippets"]
 " 还不能用
-"let g:UltiSnipsExpandTrigger = "<C-l>"
-"let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-"let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " 模板补全
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+"let g:UltiSnipsExpandTrigger="<leader><tab>"
+"let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 " <<
  
@@ -458,7 +460,7 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 " 由接口快速生成实现框架
 
 " 成员函数的实现顺序与声明顺序一致
-let g:disable_protodef_sorting=1
+"let g:disable_protodef_sorting=1
 
 " <<
 

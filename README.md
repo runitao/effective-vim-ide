@@ -6,6 +6,8 @@ brew install vim
 brew install cmake xz # need by YouCompleteMe
 brew install ctags
 brew install npm
+brew install nodejs
+npm -g install instant-markdown-d # for vim-instant-markdown
 brew install the_silver_searcher # faster code search tool than ack
 ```
 
@@ -55,6 +57,9 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 - F4: toggle tagbar
 - F5: used for ctrlp(I dont' know what it is exactly effect)
 - ctrl-p: toggle ctrlp
+- ctrl-f | ctrl-b: switch between ctrlp's tabs
+- ctrl-y: after open ctrlp, create new file
+- ctrl-o: after open ctrlp, provide a list ways in which file will be open
 - F6: toggle nerdtree
 - F8: switch back and forth between buffers
 - `;[12...90]`: jump to specify buffer

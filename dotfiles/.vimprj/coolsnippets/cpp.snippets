@@ -1,23 +1,29 @@
 # auto pair brace/bracket/parenthesis
 snippet { "auto brace" A
-{ ${1} }${0}
+{${1}}${0}
 endsnippet
+
 snippet [ "auto bracket" Ai
-[ ${1} ]${0}
+[${1}]${0}
 endsnippet
+
 snippet ( "auto parenthesis" Ai
-( ${1} )${0}
+(${1})${0}
+endsnippet
+
+snippet p "add () around selected text"
+(${VISUAL})${0}
 endsnippet
 
 # control statement
 snippet if "if"
-if ( ${1} ) {
+if (${1}) {
 	${0}
 }
 endsnippet
 
 snippet ife "if else"
-if ( $1 ) {
+if ($1) {
 	${2}
 } else {
 	${0}
@@ -25,19 +31,19 @@ if ( $1 ) {
 endsnippet
 
 snippet for "for"
-for ( ${1} ) {
+for (${1}) {
 	${0}
 }
 endsnippet
 
 snippet fora "for auto"
-for ( auto ${1} ) {
+for (auto ${1}) {
 	${0}
 }
 endsnippet
 
 snippet sw "switch"
-switch ( ${1:case} ) {
+switch (${1:case}) {
 	case ${2:value}:
 		${0}
 	break;
@@ -49,7 +55,7 @@ endsnippet
 
 # function
 snippet fu "function"
-${1:void} ${2:FunctionName}( ${3:paramenter-list} )${0}
+${1:void} ${2:FunctionName}(${3:paramenter-list})${0}
 endsnippet
 
 # test
@@ -72,8 +78,8 @@ endsnippet
 
 # class
 snippet cla "class with guard"
-#ifndef ${1:PATH_TO_FILE}_H_
-#define $1_H_
+#ifndef ${1:`!v toupper(substitute(expand("%")."_", "[/.]", "_", "g"))`}
+#define $1
 
 class ${2:ClassName}${3: : public }${4:BaseClass} {
 	public:
@@ -86,7 +92,7 @@ class ${2:ClassName}${3: : public }${4:BaseClass} {
 		// DISALLOW_COPY_AND_ASSIGN($2);
 };
 
-#endif  // $1_H_
+#endif  // $1
 endsnippet
 
 snippet cl "class"

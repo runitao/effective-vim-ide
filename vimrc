@@ -84,13 +84,17 @@ set wildmenu
 
 " vundle 环境设置
 filetype off
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+" vim-plug 管理的插件列表必须位于 plug#begin() 和 plug#end() 之间
 call plug#begin('~/.vim/plugged')
 "Plug 'asins/vimcdoc'
-Plug 'altercation/vim-colors-solarized'
+
+" begin color theme
+"Plug 'altercation/vim-colors-solarized'
 Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
-Plug 'vim-scripts/phd'
+"Plug 'tomasr/molokai'
+"Plug 'vim-scripts/phd'
+" end color theme
+
 Plug 'powerline/fonts' , { 'do': './install.sh' }
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp'] }
@@ -109,11 +113,20 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'cmake'], 'do': './install.py --clang-completer' } 
 "自动补全括号，但是又不能跳出括号，可以使用ultisnips替代
 "Plug 'Townk/vim-autoclose' , { 'for': ['c', 'cpp', 'cmake'] }
-"Plug 'derekwyatt/vim-protodef' "依赖FSWitch，以及perl，故目前没有效果
+
+" 忽略vim-cmakecomplete插件的默认设置
+" 补全快捷键是<Leader>; 是由本文中的“inoremap <Leader>; <C-x><C-o>设置的
+let g:did_cmakecomplete=1 " 不适用vim-cmake-completion默认的设置
+autocmd FileType cmake set omnifunc=cmakecomplete#Complete
+autocmd FileType cmake setlocal completeopt-=preview
+Plug 'richq/vim-cmake-completion' , { 'for': ['cmake'] }
+
+Plug 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-protodef' "依赖FSWitch，以及perl，故目前没有效果
 Plug 'tpope/vim-fugitive' 
 Plug 'Xuyuanp/nerdtree-git-plugin' 
 Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
-Plug 'fholgado/minibufexpl.vim'
+"Plug 'fholgado/minibufexpl.vim'
 "Plug 'gcmt/wildfire.vim'
 Plug 'sjl/gundo.vim'
 "Plug 'easymotion/vim-easymotion'
@@ -124,13 +137,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 filetype plugin indent on
 " <<<<
-
-" 配色方案
-"set background=dark
-"colorscheme solarized
-"colorscheme molokai
-colorscheme monokai
-"colorscheme phd
 
 " 配置vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -171,6 +177,11 @@ map <silent> <F11> :call ToggleFullscreen()<CR>
 "" 启动 vim 时自动全屏
 "autocmd VimEnter * call ToggleFullscreen()
 
+" <<
+
+" >>
+" 设置FSwitch
+nnoremap <Leader><tab> :FSHere<CR>
 " <<
 
 " >>
@@ -343,15 +354,17 @@ let g:tagbar_type_cpp = {
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+l+p+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 
+" 打开标签选择窗口
+nmap <Leader>ts :tselect<CR>
 " 正向遍历同名标签
-"nmap <Leader>tn :tnext<CR>
+nmap <Leader>tn :tnext<CR>
 " 反向遍历同名标签
-"nmap <Leader>tp :tprevious<CR>
+nmap <Leader>tp :tprevious<CR>
 
 " 基于语义的代码导航
-nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>jc :YcmCompleter GoToDeclaration<CR>
 " 只能是 #include 或已打开的文件
-nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>jd :YcmCompleter GoToDefinition<CR>
 " 在声明和定义间来回跳转。注意，必须是 #include 或已打开的文件
 nnoremap <F3> :YcmCompleter GoTo<CR>
 
@@ -430,7 +443,7 @@ let g:ycm_collect_identifiers_from_tags_files=0
 "set tags+=/data/misc/software/app/vim/stdcpp.tags
 "set tags+=/data/misc/software/app/vim/sys.tags
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-inoremap <leader>; <C-x><C-o>
+inoremap <Leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
 set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
@@ -443,17 +456,22 @@ let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_key_list_select_completion = ['<C-j>']
 let g:ycm_key_list_previous_completion = ['<C-k>']
 " 统一YCM补与UltiSnips补全快捷键
-let g:UltiSnipsSnippetDirectories=["mysnippets"]
-" 还不能用
+" let g:UltiSnipsSnippetDirectories=["/path/to/my/snippets/directory"]
+let g:UltiSnipsListSnippets="<C-l>"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " 模板补全
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
-"let g:UltiSnipsExpandTrigger="<leader><tab>"
-"let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+"let g:UltiSnipsExpandTrigger="<Leader><tab>"
+"let g:UltiSnipsJumpForwardTrigger="<Leader><tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<Leader><s-tab>"
 
+" <<
+
+" >>
+" 不限制CtrlP扫描文件的的最大数目
+let g:ctrlp_max_files=0
 " <<
  
 " >>
@@ -475,7 +493,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
 nnoremap <silent> <F6> :NERDTreeToggle<CR>
 " 设置 NERDTree 子窗口宽度
-let NERDTreeWinSize=22
+let NERDTreeWinSize=30
 " 设置 NERDTree 子窗口位置
 let NERDTreeWinPos="right"
 " 显示隐藏文件
@@ -494,10 +512,12 @@ let NERDTreeAutoDeleteBuffer=1
 let g:miniBufExplAutoStart = 0
 
 " buffer 切换快捷键
-"map <leader>bn :MBEbn<cr>
-"map <leader>bp :MBEbp<cr>
-"map <leader>bd :MBEbd<cr>
+"map <Leader>bn :MBEbn<CR>
+"map <Leader>bp :MBEbp<CR>
+"map <Leader>bd :MBEbd<CR>
 nnoremap <silent> <F8> :bn<CR>
+" S-F8是F20
+nnoremap <silent> <F20> :bp<CR>
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
 nnoremap <Leader>3 :3b<CR>
@@ -521,12 +541,12 @@ set undodir=~/.undo_history/
 set undofile
 
 " 保存快捷键
-"map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
-map <leader>ss :mksession! my.vim<cr>
+"map <Leader>ss :mksession! my.vim<CR> :wviminfo! my.viminfo<CR>
+map <Leader>ss :mksession! my.vim<CR>
 
 " 恢复快捷键
-"map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
-map <leader>rs :source my.vim<cr>
+"map <Leader>rs :source my.vim<CR> :rviminfo my.viminfo<CR>
+map <Leader>rs :source my.vim<CR>
 
 " <<
  
@@ -552,13 +572,26 @@ nnoremap <Leader>ud :GundoToggle<CR>
 " 如果运行的是neovim
 if has('nvim')
     " 映射打开nvim-terminal，并运行zsh
-    "nnoremap <leader>t  :vsplit +terminal<cr>
+    "nnoremap <Leader>t  :vsplit +terminal<CR>
     nnoremap <silent> <F2> :vsplit term://zsh<CR>
     " 映射ESC退出nvim-terminal
-    tnoremap <esc>      <c-\><c-n>
+    tnoremap <Esc>      <c-\><c-n>
     tnoremap <a-h>      <c-\><c-n><c-w>h
     tnoremap <a-j>      <c-\><c-n><c-w>j
     tnoremap <a-k>      <c-\><c-n><c-w>k
     tnoremap <a-l>      <c-\><c-n><c-w>l
     autocmd BufEnter term://* startinsert
+    " 我的nvim配置是软连接 ~/.vimrc --> $MYVIMRC
+    autocmd BufWritePost ~/.vimrc source $MYVIMRC
 endif
+
+" 配色方案，放在最后避免多次执行导致必要的开销，用'vim -V15debug.log'检验
+"set background=dark
+"colorscheme solarized
+"colorscheme molokai
+colorscheme monokai
+" monokai默认高亮搜索项
+" hi Search ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
+hi Search ctermfg=230 ctermbg=2 cterm=bold guifg=230 guibg=2 gui=bold
+"colorscheme phd
+

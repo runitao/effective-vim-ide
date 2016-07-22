@@ -55,12 +55,13 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 
 ## Key mapping
 - F4: toggle tagbar
-- F5: used for ctrlp(I dont' know what it is exactly effect)
+- F5: while CtrlP is active, to re-index CtrlP
 - ctrl-p: toggle ctrlp
 - ctrl-f | ctrl-b: switch between ctrlp's tabs
-- ctrl-y: after open ctrlp, create new file
-- ctrl-o: after open ctrlp, provide a list ways in which file will be open
+- ctrl-y: after opening ctrlp, create new file
+- ctrl-o: after opening ctrlp, provide a list ways in which file will be open
 - F6: toggle nerdtree
+- B: while NERDTree is active, to see your bookmarks above the file tree, then type `o` to open the bookmark
 - F8: switch back and forth between buffers
 - `;[12...90]`: jump to specify buffer
 - `nw | ;hw | ;jw | ;kw | ;lw`:switch between windows
@@ -71,7 +72,8 @@ cp -r $HOME/.vim/dotfiles/.vimprj /path/to/your/project/
 - `;jc`: jump to declaration(YouCompleteMe)
 - `;jd`: jump to definition(YouCompleteMe)
 - `;sf`: active CtrlSF
-- more mapping, please refer to \*map in vimrc
+- `;ud`: toggle gundo plugin
+- more about mapping, please type `:map` in vimrc
 
 ## Note
 + YouCompleteMe only support jump in a translate unit or `#include` files, but we can use [CtrlSF][] instead to jump between definition and declaration.

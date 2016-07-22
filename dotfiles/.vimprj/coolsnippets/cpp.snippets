@@ -1,0 +1,176 @@
+# auto pair brace/bracket/parenthesis
+snippet { "auto brace" A
+{ ${1} }${0}
+endsnippet
+snippet [ "auto bracket" Ai
+[ ${1} ]${0}
+endsnippet
+snippet ( "auto parenthesis" Ai
+( ${1} )${0}
+endsnippet
+
+# control statement
+snippet if "if"
+if ( ${1} ) {
+	${0}
+}
+endsnippet
+
+snippet ife "if else"
+if ( $1 ) {
+	${2}
+} else {
+	${0}
+}
+endsnippet
+
+snippet for "for"
+for ( ${1} ) {
+	${0}
+}
+endsnippet
+
+snippet fora "for auto"
+for ( auto ${1} ) {
+	${0}
+}
+endsnippet
+
+snippet sw "switch"
+switch ( ${1:case} ) {
+	case ${2:value}:
+		${0}
+	break;
+	default:
+		assert(false);
+	break;
+}
+endsnippet
+
+# function
+snippet fu "function"
+${1:void} ${2:FunctionName}( ${3:paramenter-list} )${0}
+endsnippet
+
+# test
+snippet ig "include gtest/gmock header"
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+endsnippet
+
+snippet gt "TEST()"
+TEST(${1:TestSuiteName}, ${2:TestCase}) {
+	${0}
+}
+endsnippet
+
+snippet gtf "TEST_F()"
+TEST_F(${1:TestSuiteName}, ${2:TestCase}) {
+	${0}
+}
+endsnippet
+
+# class
+snippet cla "class with guard"
+#ifndef ${1:PATH_TO_FILE}_H_
+#define $1_H_
+
+class ${2:ClassName}${3: : public }${4:BaseClass} {
+	public:
+		$2();
+		~$2()${5: override};
+
+	private:
+		${0}
+
+		// DISALLOW_COPY_AND_ASSIGN($2);
+};
+
+#endif  // $1_H_
+endsnippet
+
+snippet cl "class"
+class ${2:ClassName}${3: : public DerivedClass} {
+	public:
+		$2();
+		~$2()${4: override};
+
+	private:
+		${0}
+
+		// DISALLOW_COPY_AND_ASSIGN($2);
+};
+endsnippet
+
+snippet ns "namespace"
+namespace ${1:name} {
+${2:type}${0}
+}  // namespace $1
+endsnippet
+
+# keyword
+snippet rc "reinterpret_cast"
+reinterpret_cast<${1:Type}>(${2:variable});${0}
+endsnippet
+
+snippet cc "const_cast"
+const_cast<${1:Type}>(${2:variable});${0}
+endsnippet
+
+snippet sc "static_cast"
+static_cast<${1:Type}>(${2:variable});${0}
+endsnippet
+
+snippet dc "dynamic_cast"
+dynamic_cast<${1:Type}>(${2:variable});${0}
+endsnippet
+
+# STL
+snippet is "include system header file"
+#include <${1:iostream}>${0}
+endsnippet
+
+snippet ii "include custom header file"
+#include "${1}"${0}
+endsnippet
+
+snippet sp "shared_ptr"
+std::shared_ptr<${1:Type}> ${0}
+endsnippet
+
+snippet mksp "make_shared"
+std::make_shared<${1:Type}>(${2});${0}
+endsnippet
+
+snippet up "unique_ptr"
+std::unique_ptr<${1:Type}> ${0}
+endsnippet
+
+snippet mkup "make unique_ptr"
+std::make_unique<${1:Type}>(${2});${0}
+endsnippet
+
+# set i option will trigger expansion in word, like function(cstrr
+snippet cstrr "const string reference" i
+const std::string& ${0}
+endsnippet
+
+snippet str "string"
+std::string ${0}
+endsnippet
+
+snippet vec "vector"
+std::vector<${1:type}>${0}
+endsnippet
+
+snippet lis "list"
+std::list<${1:type}>${0}
+endsnippet
+
+# algorithm
+snippet none "none_of"
+std::none_of(std::begin(${1}), std::end($1), 
+	[${2:&*object}](${3:parameter}) {
+		${4://code block}
+	});${0}
+endsnippet
